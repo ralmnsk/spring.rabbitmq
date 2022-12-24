@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: 'rabbitmq:management'
+    container_name: 'rabbitmq_management'
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+
+#    volumes:
+#      - /docker_conf/rabbitmq/data/:/var/lib/rabbitmq/
+
+    restart: 'always'
+
+volumes:
+  logs-folder:
+    name: ${log_rabbitmq_management}
+    driver: local
+    # You may want volumes: to persist the queue.
+    # As a special case for RabbitMQ only, you would need a hostname:.
+
+#  my-service:
+#    image: my_image_name:latest
+#    ports:
+#      - 9000:9000
+#    environment:
+#      # I'd just write these out.
+#      My_TEST_VAR1: 'test_1'
+#      My_TEST_VAR2: 'test_2'
+#      RABBITMQ_HOST: rabbitmq
+#      RABBITMQ_USER: guest
+#      RABBITMQ_PASSWORD: guest
+#    # working_dir: and command: should be in your Dockerfile as
+#    # WORKDIR and CMD respectively.  links: is obsolete.
